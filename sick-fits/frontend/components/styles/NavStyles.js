@@ -62,6 +62,9 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
+  a:hover {
+    text-decoration: none;
+  }
 `;
 
 export default NavStyles;
