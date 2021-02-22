@@ -5,6 +5,7 @@
       "@components/*": ["components/*"],
       "@hooks": ["hooks"],
       "@lib/*": ["lib/*"],
+      "@config": ["config.js"]
     }
   }
 }

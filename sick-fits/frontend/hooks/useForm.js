@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useForm(initial = {}) {
   const [inputs, setInputs] = useState(initial);
+  const initialValues = Object.values(initial);
 
   function onChange(e) {
     let { name, type, value } = e.target;
@@ -10,9 +11,6 @@ export function useForm(initial = {}) {
     }
     if (type === 'file') {
       [value] = e.target.files;
-    }
-    if (name === 'price') {
-      console.log(value);
     }
     setInputs({
       ...inputs,
@@ -30,5 +28,10 @@ export function useForm(initial = {}) {
     setInputs(blank);
   }
 
+  function onDataUpdate() {
+    setInputs(initial);
+  }
+
+  useEffect(onDataUpdate, [initialValues]);
   return { clear, inputs, onChange, reset };
 }
