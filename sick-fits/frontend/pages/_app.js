@@ -4,6 +4,7 @@
 
 import Page from '@components/Page';
 import Router from 'next/router';
+import { CartProvider } from '@context';
 
 // TODO: Swap with our own
 import NProgress from 'nprogress';
@@ -19,9 +20,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function Application({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
+      <CartProvider>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </CartProvider>
     </ApolloProvider>
   );
 }

@@ -7,8 +7,11 @@ import {
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
+import { CartItem } from './schemas/CartItem';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
+import { sendPasswordEmail } from './lib/mail';
+import { extendGraphqlSchema } from './mutations';
 
 const dbUrl =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -25,6 +28,11 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     // TODO: Add initial roles
+  },
+  passwordResetLink: {
+    async sendToken({ identity, token }) {
+      await sendPasswordEmail(token, identity);
+    },
   },
 });
 
@@ -49,7 +57,9 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
+    extendGraphqlSchema,
     ui: {
       // TODO: change for roles
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

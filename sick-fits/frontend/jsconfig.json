@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
+      "@context": ["context"],
       "@hooks": ["hooks"],
       "@lib/*": ["lib/*"],
       "@config": ["config.js"]

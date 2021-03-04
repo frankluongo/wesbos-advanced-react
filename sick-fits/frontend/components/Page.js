@@ -59,6 +59,16 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+function styles() {
+  const InnerStyles = styled.main`
+    max-width: var(--maxWidth);
+    margin: 0 auto;
+    padding: 2rem;
+  `;
+
+  return { InnerStyles };
+}
+
 export default function Page({ children }) {
   const { InnerStyles } = styles();
   return (
@@ -68,16 +78,6 @@ export default function Page({ children }) {
       <InnerStyles>{children}</InnerStyles>
     </>
   );
-}
-
-function styles() {
-  const InnerStyles = styled.main`
-    max-width: var(--maxWidth);
-    margin: 0 auto;
-    padding: 2rem;
-  `;
-
-  return { InnerStyles };
 }
 
 Page.propTypes = {
