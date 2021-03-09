@@ -1,4 +1,5 @@
 import formatMoney from '@lib/formatMoney';
+import getSrc from '@lib/getSrc';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import AddToCart from './AddToCart';
@@ -9,7 +10,7 @@ import PriceTag from './styles/PriceTag';
 import Title from './styles/Title';
 
 export default function Product({ product }) {
-  const photo = product?.photo?.image?.publicUrlTransformed;
+  const photo = getSrc(product);
   const { name, price, description } = product;
   return (
     <ItemStyles>

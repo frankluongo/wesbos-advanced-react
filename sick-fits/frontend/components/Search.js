@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useLazyQuery } from '@apollo/client';
+import getSrc from '@lib/getSrc';
 import { SEARCH_PRODUCTS_QUERY } from '@lib/queries';
 import { resetIdCounter, useCombobox } from 'downshift';
 import debounce from 'lodash.debounce';
@@ -70,11 +71,7 @@ export default function Search() {
               {...getItemProps({ item })}
               highlighted={i === highlightedIndex}
             >
-              <img
-                src={item?.photo?.image?.publicUrlTransformed}
-                alt={item.name}
-                width="50"
-              />
+              <img src={getSrc(item)} alt={item.name} width="50" />
               {item.name}
             </DropDownItem>
           ))}

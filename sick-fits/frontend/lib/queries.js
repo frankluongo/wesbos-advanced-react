@@ -8,6 +8,32 @@ export const ADD_TO_CART_MUTATION = gql`
   }
 `;
 
+export const ALL_ORDERS_QUERY = gql`
+  query ALL_ORDERS_QUERY {
+    allOrders {
+      id
+      total
+      user {
+        id
+      }
+      charge
+      items {
+        id
+        price
+        quantity
+        photo {
+          id
+          image {
+            publicUrlTransformed
+          }
+        }
+        description
+        name
+      }
+    }
+  }
+`;
+
 export const ALL_PRODUCTS_COUNT = gql`
   query ALL_PRODUCTS_COUNT {
     _allProductsMeta {
@@ -45,6 +71,20 @@ export const ALL_PRODUCTS_PAGINATED_QUERY = gql`
         image {
           publicUrlTransformed
         }
+      }
+    }
+  }
+`;
+
+export const CREATE_ORDER_MUTATION = gql`
+  mutation CREATE_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
       }
     }
   }
@@ -128,6 +168,31 @@ export const DISABLE_PRODUCT_MUTATION = gql`
 export const END_SESSION = gql`
   mutation {
     endSession
+  }
+`;
+
+export const ORDER_QUERY = gql`
+  query ORDER_QUERY($id: ID!) {
+    Order(where: { id: $id }) {
+      id
+      total
+      user {
+        id
+      }
+      charge
+      items {
+        id
+        price
+        quantity
+        photo {
+          image {
+            publicUrlTransformed
+          }
+        }
+        description
+        name
+      }
+    }
   }
 `;
 

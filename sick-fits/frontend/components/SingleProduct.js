@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { SINGLE_ITEM_QUERY } from '@lib/queries';
 import DisplayError from './ErrorMessage';
+import getSrc from '@lib/getSrc';
 
 const ProductStyles = styled.div`
   align-items: top;
@@ -36,7 +37,7 @@ export default function SingleProduct({ id }) {
       <Head>
         <title>Sick Fits | {Product?.name}</title>
       </Head>
-      <img src={Product?.photo?.image?.publicUrlTransformed} alt={alt} />
+      <img src={getSrc(Product)} alt={alt} />
       <div className="details">
         <h2>{Product?.name}</h2>
         <p>{Product?.description}</p>

@@ -9,6 +9,8 @@ import CartStyles from './styles/CartStyles';
 import Supreme from './styles/Supreme';
 import CartToggle from './CartToggle';
 import DeleteCartItem from './DeleteCartItem';
+import Checkout from './Checkout';
+import getSrc from '@lib/getSrc';
 
 const CartItemStyles = styled.li`
   align-items: center;
@@ -33,11 +35,7 @@ function CartItem({ item }) {
   const { product } = item;
   return (
     <CartItemStyles>
-      <img
-        src={product?.photo?.image?.publicUrlTransformed}
-        alt={product?.name}
-        width="100"
-      />
+      <img src={getSrc(product)} alt={product?.name} width="100" />
       <div>
         <h3>
           {product?.name} x {item.quantity}
@@ -76,6 +74,7 @@ export default function Cart() {
       <footer>
         <p>{formatMoney(calcCartTotal(me.cart))}</p>
       </footer>
+      <Checkout />
     </CartStyles>
   );
 }
